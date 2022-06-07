@@ -9,6 +9,7 @@ import { PokeAPIService } from './services/poke-api.service';
 })
 export class PokemonComponent implements OnInit {
   pokemons: Pokemon[] = [];
+  search: string = '';
   constructor(private pokemonService: PokeAPIService) {}
 
   ngOnInit(): void {

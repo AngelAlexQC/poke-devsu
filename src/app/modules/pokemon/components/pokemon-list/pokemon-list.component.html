@@ -22,10 +22,9 @@
         <td>{{ pokemon.attack }}</td>
         <td>{{ pokemon.defense }}</td>
         <td>
-          <button class="btn-ghost" (click)="handleEdit(pokemon)">
+          <button class="btn-ghost" (click)="handleEdit(pokemon)" title="Editar">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="icon icon-tabler icon-tabler-edit"
               width="16"
               height="16"
               viewBox="0 0 24 24"
@@ -43,10 +42,9 @@
               <line x1="16" y1="5" x2="19" y2="8" />
             </svg>
           </button>
-          <button class="btn-ghost" (click)="handleDelete(pokemon)">
+          <button class="btn-ghost" (click)="handleDelete(pokemon)" title="Eliminar">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="icon icon-tabler icon-tabler-trash"
               width="16"
               height="16"
               viewBox="0 0 24 24"

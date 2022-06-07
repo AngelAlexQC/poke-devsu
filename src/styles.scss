@@ -29,6 +29,11 @@ button {
   }
   &.btn-primary {
     background-color: $primary-color;
+    span,
+    svg {
+      color: #fff;
+      stroke: #fff;
+    }
   }
   &.btn-outline-primary {
     border: 1px solid $primary-color;
