@@ -8,18 +8,19 @@ import { Pokemon } from '../../lib/interfaces/pokemon';
 })
 export class PokemonListComponent implements OnInit {
   @Input() pokemons: Pokemon[] = [];
-  @Output() onEdit(pokemon: Pokemon): void {}
-  @Output() onDelete(pokemon: Pokemon): void {}
-  constructor() {}
+  @Input() search: string = '';
+  @Output() onEdit = new EventEmitter<Pokemon>();
+  @Output() onDelete = new EventEmitter<Pokemon>();
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   handleEdit(pokemon: Pokemon): void {
-    this.onEdit(pokemon);
+    this.onEdit.emit(pokemon);
   }
 
   handleDelete(pokemon: Pokemon): void {
-    this.onDelete(pokemon);
+    this.onDelete.emit(pokemon);
   }
 
   onImageError(event: Event, text: string): void {
@@ -27,4 +28,5 @@ export class PokemonListComponent implements OnInit {
       'https://ui-avatars.com/api/?v1&background=random&color=fff&size=1024&name=' +
       text;
   }
+
 }

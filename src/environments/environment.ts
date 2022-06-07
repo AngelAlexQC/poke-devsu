@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiURL : 'https://pokemon-pichincha.herokuapp.com/pokemons/',
+  apiURL: 'https://pokemon-pichincha.herokuapp.com/pokemons',
 };
 
 /*

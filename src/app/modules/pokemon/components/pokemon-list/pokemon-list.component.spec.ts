@@ -47,7 +47,7 @@ describe('PokemonListComponent', () => {
     });
 
     it('header should have diferents columns', () => {
-      const headers = ['Nombre', 'Imagen', 'Ataque', 'Defensa', 'Acciones'];
+      const headers = ['Nombre', 'Imagen', 'Ataque', 'Defensa', 'Tipo', 'Acciones'];
       const header = fixture.nativeElement.querySelector('thead');
       const th = header.querySelectorAll('th');
       expect(th.length).toBe(headers.length);

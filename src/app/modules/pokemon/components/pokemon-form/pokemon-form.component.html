@@ -1,149 +1,191 @@
 <div class="card">
-  <h3 class="title">
-    <span *ngIf="!isEditing">Nuevo</span>
-    <span *ngIf="isEditing">Editar</span>
-    Pokemon
-  </h3>
-  <div class="card-body">
-    <form
-      [formGroup]="pokemonForm"
-      (ngSubmit)="handleSubmit($event)"
-      class="grid-form"
+ <h3 class="title">
+  <span *ngIf="!isEditing">Nuevo</span>
+  <span *ngIf="isEditing">Editar</span>
+  Pokemon
+ </h3>
+ <div class="card-body">
+  <form
+   [formGroup]="pokemonForm"
+   (ngSubmit)="handleSubmit($event)"
+   class="grid-form"
+  >
+   <div class="form-group">
+    <label for="name">Nombre</label>
+    <input
+     type="text"
+     class="form-control"
+     id="name"
+     name="name"
+     formControlName="name"
+     [value]="pokemon?.name || ''"
+     required="required"
+    />
+    <div
+     class="form-error"
+     id="name-error"
+     *ngIf="pokemonForm.get('name')?.errors?.['required'] && !pokemonForm.get('name')?.pristine"
     >
-      <div class="form-group">
-        <label for="name">Nombre</label>
-        <input
-          type="text"
-          class="form-control"
-          id="name"
-          name="name"
-          formControlName="name"
-          [value]="pokemon.name"
-          required="required"
-        />
-        <div
-          class="form-error"
-          id="name-error"
-          *ngIf="pokemonForm.get('name')?.errors?.['required'] && !pokemonForm.get('name')?.pristine"
-        >
-          El nombre es requerido
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="image">Imagen</label>
-        <input
-          type="text"
-          class="form-control"
-          id="image"
-          name="image"
-          formControlName="image"
-          [value]="pokemon.image"
-        />
-        <div
-          class="form-error"
-          *ngIf="(
+     El nombre es requerido
+    </div>
+   </div>
+   <div class="form-group">
+    <label for="image">Imagen</label>
+    <input
+     type="text"
+     class="form-control"
+     id="image"
+     name="image"
+     formControlName="image"
+     [value]="pokemon?.image || ''"
+    />
+    <div
+     class="form-error"
+     *ngIf="(
             (pokemonForm.get('image')?.errors?.['required'] ||
             pokemonForm.get('image')?.errors?.['pattern'])) && !pokemonForm.get('image')?.pristine"
-        >
-          {{ pokemonForm.get('image')?.errors?.['required'] ? 'El link de la imagen es requerido':''}}
-          {{ pokemonForm.get('image')?.errors?.['pattern'] ? 'El link de la imagen no es válido':''}}
-        </div>
-      </div>
-      <!-- Attack Range -->
-      <div class="form-group">
-        <label for="attack">Ataque</label>
-        <div class="flex">
-          <span>0</span>
-          <input
-            type="range"
-            class="form-control"
-            id="attack"
-            name="attack"
-            formControlName="attack"
-            [value]="pokemon.attack"
-            min="0"
-            max="100"
-            oninput="this.nextElementSibling.value = this.value"
-            required="required"
-          />
-          <output>{{ pokemon.attack }}</output>
-        </div>
-      </div>
-      <!-- Defense Range -->
-      <div class="form-group">
-        <label for="defense">Defensa</label>
-        <div class="flex">
-          <span>0</span>
-          <input
-            type="range"
-            class="form-control"
-            id="defense"
-            name="defense"
-            formControlName="defense"
-            [value]="pokemon.defense"
-            min="0"
-            max="100"
-            oninput="this.nextElementSibling.value = this.value"
-            required="required"
-          />
-          <output>{{ pokemon.defense }}</output>
-        </div>
-      </div>
-    </form>
-  </div>
-  <div class="card-footer">
-    <button
-      class="btn-primary"
-      [disabled]="!pokemonForm.valid"
-      type="submit"
-      (click)="handleSubmit($event)"
     >
-      <div class="button-content">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="feather feather-save"
-        >
-          <path
-            d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"
-          ></path>
-          <polyline points="17 21 17 13 7 13 7 21"></polyline>
-          <polyline points="7 3 7 8 15 8"></polyline>
-        </svg>
-        &nbsp; <span>Guardar</span>
-      </div>
-    </button>
-    <button
-      class="btn-primary"
-      type="button"
-      (click)="handleCancel($event)"
-      data-test="cancel"
+     {{ pokemonForm.get('image')?.errors?.['required'] ? 'El link de la imagen es requerido':''}}
+     {{ pokemonForm.get('image')?.errors?.['pattern'] ? 'El link de la imagen no es válido':''}}
+    </div>
+   </div>
+   <!-- Attack Range -->
+   <div class="form-group">
+    <label for="attack">Ataque</label>
+    <div class="flex">
+     <span>0</span>
+     <input
+      type="range"
+      class="form-control"
+      id="attack"
+      name="attack"
+      formControlName="attack"
+      [value]="pokemon?.attack || 0"
+      min="0"
+      max="100"
+      oninput="this.nextElementSibling.value = this.value"
+      required="required"
+     />
+     <output>{{ pokemon?.attack || 0 }}</output>
+    </div>
+    <div
+     class="form-error"
+     id="attack-error"
+     *ngIf="pokemonForm.get('attack')?.errors?.['required'] && !pokemonForm.get('attack')?.pristine"
     >
-      <div class="button-content">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="feather feather-x"
-        >
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
-        &nbsp; <span>Cancelar</span>
-      </div>
-    </button>
-  </div>
+     El valor de ataque es requerido
+    </div>
+   </div>
+   <!-- Defense Range -->
+   <div class="form-group">
+    <label for="defense">Defensa</label>
+    <div class="flex">
+     <span>0</span>
+     <input
+      type="range"
+      class="form-control"
+      id="defense"
+      name="defense"
+      formControlName="defense"
+      [value]="pokemon?.defense || 0"
+      min="0"
+      max="100"
+      oninput="this.nextElementSibling.value = this.value"
+      required="required"
+     />
+     <output>{{ pokemon?.defense || 0 }}</output>
+    </div>
+    <div
+     class="form-error"
+     id="defense-error"
+     *ngIf="pokemonForm.get('defense')?.errors?.['required'] && !pokemonForm.get('defense')?.pristine"
+    >
+     El valor de defensa es requerido
+    </div>
+   </div>
+   <!-- Type Select -->
+   <div class="form-group">
+    <label for="type">Tipo</label>
+    <select
+     class="form-control"
+     id="type"
+     name="type"
+     formControlName="type"
+     [value]="pokemon?.type || ''"
+     required="required"
+    >
+     <option value=""></option>
+     <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+    </select>
+    <div
+     class="form-error"
+     id="type-error"
+     *ngIf="pokemonForm.get('type')?.errors?.['required'] && !pokemonForm.pristine"
+    >
+     El tipo es requerido
+    </div>
+   </div>
+  </form>
+ </div>
+ <div class="card-footer">
+  <button
+   class="btn-primary"
+   [disabled]="
+    (!pokemon?.attack && !pokemonForm.get('attack')?.valid) ||
+    (!pokemon?.defense && !pokemonForm.get('defense')?.valid) ||
+    (!pokemon?.type && !pokemonForm.get('type')?.valid) ||
+    (!pokemon?.image && !pokemonForm.get('image')?.valid) ||
+    (!pokemon?.image && !pokemonForm.get('name')?.valid)
+   "
+   type="submit"
+   (click)="handleSubmit($event)"
+  >
+   <div class="button-content">
+    <svg
+     xmlns="http://www.w3.org/2000/svg"
+     width="16"
+     height="16"
+     viewBox="0 0 24 24"
+     fill="none"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="round"
+     stroke-linejoin="round"
+     class="feather feather-save"
+    >
+     <path
+      d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"
+     ></path>
+     <polyline points="17 21 17 13 7 13 7 21"></polyline>
+     <polyline points="7 3 7 8 15 8"></polyline>
+    </svg>
+    &nbsp; <span>Guardar</span>
+   </div>
+  </button>
+  <button
+   class="btn-primary"
+   type="button"
+   (click)="handleCancel($event)"
+   data-test="cancel"
+  >
+   <div class="button-content">
+    <svg
+     xmlns="http://www.w3.org/2000/svg"
+     width="16"
+     height="16"
+     viewBox="0 0 24 24"
+     fill="none"
+     stroke="currentColor"
+     stroke-width="1"
+     stroke-linecap="round"
+     stroke-linejoin="round"
+     class="feather feather-x"
+    >
+     <line x1="18" y1="6" x2="6" y2="18"></line>
+     <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+    &nbsp; <span>Cancelar</span>
+   </div>
+  </button>
+ </div>
 </div>

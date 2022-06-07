@@ -1,28 +1,39 @@
-<h1>
-  Listado de Pokemon
-</h1>
+<h1>Listado de Pokemon</h1>
 <div class="actions">
-  <app-search [(text)]="search"> </app-search>
-  <button class="btn-primary">
-    <div class="button-content">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        stroke-width="1"
-        stroke="#000000"
-        fill="none"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-        <line x1="12" y1="5" x2="12" y2="19" />
-        <line x1="5" y1="12" x2="19" y2="12" />
-      </svg>
-      &nbsp; <span>Nuevo</span>
-    </div>
-  </button>
+ <app-search [(text)]="search"></app-search>
+ <button class="btn-primary" (click)="onNew()">
+  <div class="button-content">
+   <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    stroke-width="1"
+    stroke="#000000"
+    fill="none"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+   >
+    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+    <line x1="12" y1="5" x2="12" y2="19" />
+    <line x1="5" y1="12" x2="19" y2="12" />
+   </svg>
+   &nbsp; <span>Nuevo</span>
+  </div>
+ </button>
 </div>
-<app-pokemon-list [pokemons]="pokemons"> </app-pokemon-list>
-<app-pokemon-form [isEditing]="isEditing"> </app-pokemon-form>
+<app-pokemon-list
+ [pokemons]="filteredPokemons()"
+ (onEdit)="onEdit($event)"
+ (onDelete)="onDelete($event)"
+></app-pokemon-list>
+
+<app-pokemon-form
+ [(pokemon)]="selectedPokemon"
+ [isEditing]="isEditing"
+ [style]="{ display: isEditing ? 'block' : 'none' }"
+ (onCancel)="onCancel()"
+ (onSubmit)="onSubmit($event)"
+ id="pokemon-form"
+>
+</app-pokemon-form>

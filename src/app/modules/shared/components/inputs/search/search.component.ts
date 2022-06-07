@@ -13,4 +13,8 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSearchChange() {
+    this.textChange.emit(this.text);
+  }
+
 }

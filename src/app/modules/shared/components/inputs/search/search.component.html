@@ -1,10 +1,11 @@
 <div class="form-group">
-  <input
-    type="text"
-    [(ngModel)]="text"
-    [value]="text"
-    class="form-control"
-    id="search"
-    placeholder="Buscar"
-  />
+ <input
+  type="text"
+  [(ngModel)]="text"
+  [value]="text"
+  class="form-control"
+  id="search"
+  placeholder="Buscar"
+  (ngModelChange)="onSearchChange()"
+ />
 </div>
