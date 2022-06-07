@@ -20,7 +20,9 @@ export class PokemonListComponent implements OnInit {
   }
 
   handleDelete(pokemon: Pokemon): void {
-    this.onDelete.emit(pokemon);
+    if (confirm('Esta seguro que desea eliminar el pokemon?')) {
+      this.onDelete.emit(pokemon);
+    }
   }
 
   onImageError(event: Event, text: string): void {

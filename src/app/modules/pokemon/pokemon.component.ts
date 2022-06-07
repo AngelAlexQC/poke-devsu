@@ -86,14 +86,15 @@ export class PokemonComponent implements OnInit {
         this.isEditing = false;
         this.selectedPokemon = this.clearPokemon();
         this.search = '';
-      }
-      );
+        alert('Pokemon actualizado');
+      });
     } else {
       this.pokemonService.createPokemon(pokemon).subscribe(() => {
         this.getPokemons();
         this.isEditing = false;
         this.selectedPokemon = this.clearPokemon();
         this.search = '';
+        alert('Pokemon creado');
       });
     }
   }

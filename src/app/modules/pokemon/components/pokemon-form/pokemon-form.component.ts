@@ -65,6 +65,7 @@ export class PokemonFormComponent implements OnInit {
   handleCancel(event: Event) {
     event.preventDefault();
     this.onCancel.emit(null);
+    window.scrollTo(0, 0);
   }
 
 }
