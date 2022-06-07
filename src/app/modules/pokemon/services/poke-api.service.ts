@@ -12,7 +12,7 @@ export class PokeAPIService {
   constructor(private httpClient: HttpClient) {}
 
   getPokemons() {
-    return this.httpClient.get<Pokemon>(
+    return this.httpClient.get<Pokemon[]>(
       `${this.apiURL}?idAuthor=${this.idAuthor}`
     );
   }
