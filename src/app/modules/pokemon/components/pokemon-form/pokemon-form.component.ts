@@ -11,9 +11,12 @@ export class PokemonFormComponent implements OnInit {
   @Input() isEditing: boolean = false;
   @Input() pokemon: Pokemon;
   @Output() onSubmit: EventEmitter<Pokemon> = new EventEmitter<Pokemon>();
+  @Output() onCancel: EventEmitter<void> = new EventEmitter<void>();
   pokemonForm = new FormGroup({
     name: new FormControl('', Validators.required),
-    image: new FormControl('', [Validators.required, Validators.pattern('^(http|https)://.*')]),
+    image: new FormControl('', [Validators.required, Validators.pattern(/^https?:\/\/.*\.(png|jpg|jpeg)$/)]),
+    attack: new FormControl('', [Validators.required, Validators.min(0), Validators.max(100)]),
+    defense: new FormControl('', [Validators.required, Validators.min(0), Validators.max(100)]),
   });
 
   constructor() {
@@ -37,6 +40,11 @@ export class PokemonFormComponent implements OnInit {
   handleSubmit($event: Event) {
     $event.preventDefault();
     this.onSubmit.emit(this.pokemonForm.value);
+  }
+
+  handleCancel(event: Event) {
+    event.preventDefault();
+    this.onCancel.emit();
   }
 
 }

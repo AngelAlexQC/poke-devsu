@@ -56,6 +56,48 @@ describe('PokemonFormComponent', () => {
       const input = compiled.querySelector('input[name="defense"][type="range"]');
       expect(input.min).toBe('0');
       expect(input.max).toBe('100');
-    })
+    });
+
+    it('should render submit button', () => {
+      const compiled = fixture.debugElement.nativeElement;
+      expect(compiled.querySelector('button[type="submit"]')).toBeTruthy();
+    });
+
+    it('should render cancel button', () => {
+      const compiled = fixture.debugElement.nativeElement;
+      const button = compiled.querySelector('button[type="button"][data-test="cancel"]');
+      expect(button).toBeTruthy();
+    });
+
+    describe('validation', () => {
+      it('should render name input with required validator', () => {
+        const control = component.pokemonForm.get('name');
+        if (control && control.errors) {
+          expect(control.errors['required']).toBeTruthy();
+        }
+      });
+
+      it('should render image url input with pattern validators', () => {
+        const control = component.pokemonForm.get('image');
+        expect(control?.valid).toBeFalsy();
+        if (control && control.errors) {
+          control.setValue('test');
+          expect(control.errors['pattern']).toBeTruthy();
+        }
+      });
+    });
   });
+
+  it('should render attack range input with required and min/max validators', () => {
+    const control = component.pokemonForm.get('attack');
+    expect(control?.valid).toBeFalsy();
+    if (control && control.errors) {
+      expect(control.errors['required']).toBeTruthy();
+      control.setValue(-1);
+      expect(control.errors['min']).toBeTruthy();
+      control.setValue(101);
+      expect(control.errors['max']).toBeTruthy();
+    }
+  });
+
 });

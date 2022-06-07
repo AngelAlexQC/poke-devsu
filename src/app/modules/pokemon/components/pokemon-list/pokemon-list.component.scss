@@ -3,11 +3,14 @@
   width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  padding: 0;
+  margin-bottom: 1rem;
+  border-radius: 5px;
   table {
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
-    border: 1px solid #ddd;
+    border: none;
     tr {
       border-bottom: 1px solid #ddd;
       &:hover {
@@ -15,7 +18,7 @@
       }
       td,
       th {
-        padding: 2px 8px;
+        padding: 5px 8px;
         text-align: center;
         &:first-child {
           text-align: left;
@@ -26,6 +29,9 @@
           height: 50px;
           object-fit: cover;
         }
+      }
+      th{
+        padding: 1rem;
       }
     }
   }

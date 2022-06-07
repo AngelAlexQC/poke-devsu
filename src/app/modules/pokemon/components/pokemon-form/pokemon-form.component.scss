@@ -1,3 +1,28 @@
-.flex{
+.flex {
   display: flex;
+}
+.grid-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 2rem;
+  padding: 1rem;
+  .form-error{
+    color: red;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+  }
+}
+.title,
+.title span {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.card-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
 }
