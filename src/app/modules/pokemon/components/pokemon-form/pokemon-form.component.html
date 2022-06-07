@@ -1,0 +1,75 @@
+<div class="card">
+  <h3>
+    <span *ngIf="!isEditing">Nuevo</span>
+    <span *ngIf="isEditing">Editar</span>
+    Pokemon
+  </h3>
+  <div class="card-body">
+    <form
+      [formGroup]="pokemonForm"
+      (ngSubmit)="handleSubmit($event)"
+      class="grid-form"
+    >
+      <div class="form-group">
+        <label for="name">Nombre</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          formControlName="name"
+          [(ngModel)]="pokemon.name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="image">Imagen</label>
+        <input
+          type="text"
+          class="form-control"
+          id="image"
+          name="image"
+          formControlName="image"
+          [(ngModel)]="pokemon.image"
+        />
+      </div>
+      <!-- Attack Range -->
+      <div class="form-group">
+        <label for="attack">Ataque</label>
+        <div class="flex">
+          <span>0</span>
+          <input
+            type="range"
+            class="form-control"
+            id="attack"
+            name="attack"
+            formControlName="attack"
+            [(ngModel)]="pokemon.attack"
+            min="0"
+            max="100"
+            oninput="this.nextElementSibling.value = this.value"
+          />
+          <output>{{ pokemon.attack }}</output>
+        </div>
+      </div>
+      <!-- Defense Range -->
+      <div class="form-group">
+        <label for="defense">Defensa</label>
+        <div class="flex">
+          <span>0</span>
+          <input
+            type="range"
+            class="form-control"
+            id="defense"
+            name="defense"
+            formControlName="defense"
+            [(ngModel)]="pokemon.defense"
+            min="0"
+            max="100"
+            oninput="this.nextElementSibling.value = this.value"
+          />
+          <output>{{ pokemon.defense }}</output>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

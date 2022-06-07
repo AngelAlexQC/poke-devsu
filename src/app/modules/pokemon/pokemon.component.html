@@ -1,7 +1,7 @@
-<div class="flex">
+<div class="actions">
   <app-search [(text)]="search"> </app-search>
   <button class="btn-primary">
-    <div class="flex">
+    <div class="button-content">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"
@@ -22,3 +22,4 @@
   </button>
 </div>
 <app-pokemon-list [pokemons]="pokemons"> </app-pokemon-list>
+<app-pokemon-form [isEditing]="isEditing"> </app-pokemon-form>
